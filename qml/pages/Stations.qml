@@ -13,7 +13,18 @@ import "../dublinbikes.js" as DublinBikes
 
 Page {
     id: page
-    property bool loading: false
+    property bool loading: Qt.dublinBikes.loading
+
+    function load() {
+        page.loading = true;
+        Qt.dublinBikes = DublinBikes.api;
+        Qt.dublinBikes.loadStationData(function () {
+            page.loading = false;
+            pageStack.replace(Qt.resolvedUrl("Stations.qml"));
+        }, function () {
+            pageStack.push(Qt.resolvedUrl("ErrorPage.qml"));
+        });
+    }
 
     BusyIndicator {
         anchors.centerIn: parent
@@ -28,21 +39,12 @@ Page {
             MenuItem {
                 text: "About"
                 onClicked: {
-                    pageStack.replace(Qt.resolvedUrl("About.qml"));
+                    pageStack.push(Qt.resolvedUrl("About.qml"));
                 }
             }
             MenuItem {
                 text: "Refresh"
-                onClicked: {
-                    page.loading = true;
-                    Qt.dublinBikes = DublinBikes.api;
-                    Qt.dublinBikes.loadStationData(function () {
-                        page.loading = false;
-                        pageStack.replace(Qt.resolvedUrl("Stations.qml"));
-                    }, function () {
-
-                    });
-                }
+                onClicked: load()
             }
         }
 
@@ -68,5 +70,5 @@ Page {
         }
     }
 
-
+    Component.onCompleted:load()
 }

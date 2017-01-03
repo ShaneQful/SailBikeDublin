@@ -39,5 +39,6 @@ TRANSLATIONS += translations/SailBikeDublin-de.ts
 DISTFILES += \
     qml/pages/Stations.qml \
     qml/pages/ErrorPage.qml \
-    qml/dublinbikes.js
+    qml/dublinbikes.js \
+    qml/pages/About.qml
 

@@ -21,7 +21,6 @@ var api = (function () {
         networkCall("https://api.citybik.es/v2/networks/dublinbikes", function (data) {
             var bikeData = JSON.parse(data);
             stations = bikeData.network.stations;
-            console.log(stations[0].name);
             success();
         }, function () {
             failure();
@@ -30,9 +29,9 @@ var api = (function () {
 
     return {
         stations: function () {
-            console.log(stations);
             return stations;
         },
+        loading: false,
         loadStationData: loadStationData
     }
 }());
