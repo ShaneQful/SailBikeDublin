@@ -39,7 +39,7 @@ Page {
                 linkColor: Theme.highlightColor
                 font.pixelSize: Theme.fontSizeSmall
                 onLinkActivated: Qt.openUrlExternally(link)
-                text: "<strong>SailBikeDublin</strong> (0.2-2)<br>
+                text: "<strong>SailBikeDublin</strong> (0.1)<br>
 
 Real Time Information App for Dublin bikes for the Sailfish Operating System.<br><br>
 
