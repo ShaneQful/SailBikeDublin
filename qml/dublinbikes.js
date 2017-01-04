@@ -20,7 +20,15 @@ var api = (function () {
     function loadStationData(success, failure) {
         networkCall("https://api.citybik.es/v2/networks/dublinbikes", function (data) {
             var bikeData = JSON.parse(data);
-            stations = bikeData.network.stations;
+            stations = bikeData.network.stations.sort(function (a, b) {
+                if (a.name > b.name) {
+                    return 1;
+                }
+                if(b.name > a.name) {
+                    return -1;
+                }
+                return 0;
+            });
             success();
         }, function () {
             failure();
@@ -35,6 +43,8 @@ var api = (function () {
             var station = stations[index];
             if(station) {
                 return station.name + " - " + station.free_bikes + "/" + (station.empty_slots + station.free_bikes);
+            } else {
+                console.log(JSON.stringify(station));
             }
         },
         current: 0,
