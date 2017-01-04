@@ -49,7 +49,8 @@ CoverBackground {
                 } else {
                     Qt.dublinBikes.current = Qt.dublinBikes.stations().length - 1;
                 }
-                label.text = Qt.dublinBikes.getStationString(Qt.dublinBikes.current).replace(" - ", "<br>").replace(/\s/g, "<br>")
+                Qt.dublinBikes.coverString = Qt.dublinBikes.getStationString(Qt.dublinBikes.current).replace(" - ", "<br>").replace(/\s/g, "<br>")
+                label.text = Qt.dublinBikes.coverString;
             }
         }
 
@@ -61,11 +62,23 @@ CoverBackground {
                 } else {
                     Qt.dublinBikes.current = 0;
                 }
-                label.text = Qt.dublinBikes.getStationString(Qt.dublinBikes.current).replace(" - ", "<br>").replace(/\s/g, "<br>")
+                Qt.dublinBikes.coverString = Qt.dublinBikes.getStationString(Qt.dublinBikes.current).replace(" - ", "<br>").replace(/\s/g, "<br>")
+                label.text = Qt.dublinBikes.coverString;
             }
         }
 
     }
+
+    Timer {
+        id: pageTimer
+        interval: 5000;
+        running: true;
+        repeat: true
+        onTriggered: {
+            label.text = Qt.dublinBikes.coverString;
+        }
+    }
+
 }
 
 
