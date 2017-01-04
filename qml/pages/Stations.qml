@@ -63,8 +63,8 @@ Page {
                 color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
             }
             onClicked: {
-                page.loading = true;
-                //TODO: Chnage page
+                Qt.dublinBikes.current = index;
+                pageStack.push(Qt.resolvedUrl("Station.qml"));
             }
         VerticalScrollDecorator {}
         }

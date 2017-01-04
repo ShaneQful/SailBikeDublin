@@ -40,5 +40,6 @@ DISTFILES += \
     qml/pages/Stations.qml \
     qml/pages/ErrorPage.qml \
     qml/dublinbikes.js \
-    qml/pages/About.qml
+    qml/pages/About.qml \
+    qml/pages/Station.qml
 
