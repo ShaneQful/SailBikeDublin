@@ -31,6 +31,14 @@ var api = (function () {
         stations: function () {
             return stations;
         },
+        getStationString: function (index) {
+            var station = stations[index];
+            if(station) {
+                return station.name + " - " + station.free_bikes + "/" + (station.empty_slots + station.free_bikes);
+            }
+        },
+        current: 0,
+        coverString: "SailBikeDublin",
         loading: false,
         loadStationData: loadStationData
     }

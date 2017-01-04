@@ -48,7 +48,7 @@ Page {
             }
         }
 
-        model: Qt.dublinBikes.stations().length
+        model: Qt.dublinBikes && Qt.dublinBikes.stations().length
         anchors.fill: parent
         header: PageHeader {
             title: "Stations"
@@ -58,12 +58,13 @@ Page {
 
             Label {
                 x: Theme.paddingLarge
-                text: Qt.dublinBikes.stations()[index].name + " - " + Qt.dublinBikes.stations()[index].free_bikes + "/" + (Qt.dublinBikes.stations()[index].empty_slots + Qt.dublinBikes.stations()[index].free_bikes)
+                text: Qt.dublinBikes.getStationString(index)
                 anchors.verticalCenter: parent.verticalCenter
                 color: delegate.highlighted ? Theme.highlightColor : Theme.primaryColor
             }
             onClicked: {
                 Qt.dublinBikes.current = index;
+                Qt.dublinBikes.coverString = Qt.dublinBikes.getStationString(index).replace(" - ", "<br>").replace(/\s/g, "<br>");
                 pageStack.push(Qt.resolvedUrl("Station.qml"));
             }
         VerticalScrollDecorator {}

@@ -35,7 +35,7 @@ CoverBackground {
     Label {
         id: label
         anchors.centerIn: parent
-        text: qsTr("Fenian St. 19/35")
+        text: Qt.dublinBikes.coverString
     }
 
     CoverActionList {
@@ -43,10 +43,26 @@ CoverBackground {
 
         CoverAction {
             iconSource: "image://theme/icon-cover-previous"
+            onTriggered: {
+                if(Qt.dublinBikes.current > 0) {
+                    Qt.dublinBikes.current -=1;
+                } else {
+                    Qt.dublinBikes.current = Qt.dublinBikes.stations().length - 1;
+                }
+                label.text = Qt.dublinBikes.getStationString(Qt.dublinBikes.current).replace(" - ", "<br>").replace(/\s/g, "<br>")
+            }
         }
 
         CoverAction {
             iconSource: "image://theme/icon-cover-next"
+            onTriggered: {
+                if(Qt.dublinBikes.current < Qt.dublinBikes.stations().length - 1) {
+                    Qt.dublinBikes.current +=1;
+                } else {
+                    Qt.dublinBikes.current = 0;
+                }
+                label.text = Qt.dublinBikes.getStationString(Qt.dublinBikes.current).replace(" - ", "<br>").replace(/\s/g, "<br>")
+            }
         }
 
     }
