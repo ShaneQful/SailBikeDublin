@@ -1,13 +1,7 @@
 [Desktop Entry]
 Type=Application
 X-Nemo-Application-Type=silica-qt5
-Icon=SailBikeDublin
-Exec=SailBikeDublin
+Icon=harbour-sailbikedublin
+Exec=harbour-sailbikedublin
 Name=SailBikeDublin
-# translation example:
-# your app name in German locale (de)
-#
-# Remember to comment out the following line, if you do not want to use
-# a different app name in German locale (de).
-Name[de]=SailBikeDublin
 
